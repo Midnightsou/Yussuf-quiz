@@ -1,0 +1,79 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+    text-align: center;
+      margin: 0;
+        padding: 0;
+        }
+
+        .page {
+          display: none;
+          }
+
+          #questionText {
+            font-size: 24px;
+            }
+
+            #answerOptions button {
+              width: 200px;
+                margin: 10px;
+                  padding: 10px;
+                    font-size: 18px;
+                      cursor: pointer;
+                      }
+
+                      #progressBarContainer {
+                        width: 100%;
+                          height: 10px;
+                            background-color: #f0f0f0;
+                              margin-top: 20px;
+                              }
+
+                              #progressBar {
+                                width: 0%;
+                                  height: 100%;
+                                    background-color: #4CAF50;
+                                    }
+
+                                    #timer {
+                                      font-size: 30px;
+                                        color: #FF6347;
+                                          margin-top: 10px;
+                                          }
+
+                                          .star-rating {
+                                            font-size: 2em;
+                                              color: gold;
+                                              }
+
+                                              .star-rating .star {
+                                                color: gray;
+                                                }
+
+                                                .star-rating .star.filled {
+                                                  color: gold;
+                                                  }
+
+                                                  /* Welcome Page Styles */
+                                                  #welcomePage {
+                                                    display: block;
+                                                      margin-top: 50px;
+                                                      }
+
+                                                      #welcomePage h1 {
+                                                        font-size: 36px;
+                                                          margin-bottom: 20px;
+                                                          }
+
+                                                          #welcomePage button {
+                                                            font-size: 24px;
+                                                              margin: 20px;
+                                                                padding: 10px 20px;
+                                                                  cursor: pointer;
+                                                                  }
+
+                                                                  /* Result Page Styles */
+                                                                  #resultPage {
+                                                                    display: block;
+                                                                      margin-top: 50px;
+                                                                      }
