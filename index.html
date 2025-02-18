@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Quiz - Prophet Yusuf</title>
+    <title>Prophet Yusuf Quiz</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 
     <!-- Level Selection Screen -->
     <div id="level-screen" class="hidden">
-        <h2>Select Difficulty Level</h2>
+        <h2>Select Difficulty</h2>
         <button onclick="startQuiz('easy')">Easy</button>
         <button onclick="startQuiz('medium')">Medium</button>
         <button onclick="startQuiz('hard')">Hard</button>
@@ -27,7 +27,7 @@
         <h2 id="question-number"></h2>
         <p id="question-text"></p>
         <div id="options-container"></div>
-        <p id="timer">Time Left: <span id="time-left">30</span> sec</p>
+        <p>Time Left: <span id="time-left">30</span> seconds</p>
         <button onclick="prevQuestion()">Previous</button>
         <button onclick="nextQuestion()">Next</button>
     </div>
@@ -36,7 +36,7 @@
     <div id="results-screen" class="hidden">
         <h2>Quiz Completed!</h2>
         <p>Your Score: <span id="final-score"></span></p>
-        <p>Correct Answers:</p>
+        <h3>Correct Answers:</h3>
         <div id="correct-answers"></div>
         <button onclick="restartQuiz()">Restart Quiz</button>
         <button onclick="goToMainMenu()">Main Menu</button>
