@@ -1,9 +1,8 @@
 // Global variables
-let currentUser = null;
 let currentLevel = null;
 let currentQuestionIndex = 0;
 let questions = {
-    easy: [
+  easy: [
     ["Who was Prophet Yusuf's father?", ["Prophet Ya'qub", "Prophet Ibrahim", "Prophet Musa"], 0],
     ["What did Prophet Yusuf see in his dream?", ["Eleven stars", "A full moon", "A burning tree"], 0],
     ["Who were Prophet Yusuf's brothers?", ["Twelve", "Ten", "Seven"], 0],
@@ -69,12 +68,8 @@ let questions = {
     ["What did Prophet Yusuf say when he invited his family to Egypt?", ["Come and stay with me", "I will provide for you", "You will be honored in Egypt"], 0]
   ]
 };
-
 // DOM Elements
-const startBtn = document.getElementById("start-btn");
-const signUpBtn = document.getElementById("sign-up-btn");
-const backToWelcomeBtn = document.getElementById("back-to-welcome-btn");
-const backToWelcomeBtnSignin = document.getElementById("back-to-welcome-btn-signin");
+const startQuizBtn = document.getElementById("start-quiz-btn");
 const easyBtn = document.getElementById("easy-btn");
 const mediumBtn = document.getElementById("medium-btn");
 const hardBtn = document.getElementById("hard-btn");
@@ -83,8 +78,6 @@ const returnToMainBtn = document.getElementById("return-to-main-btn");
 const restartBtn = document.getElementById("restart-btn");
 
 const welcomeScreen = document.getElementById("welcome-screen");
-const signupScreen = document.getElementById("signup-screen");
-const signinScreen = document.getElementById("signin-screen");
 const levelScreen = document.getElementById("level-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultsScreen = document.getElementById("results-screen");
@@ -95,8 +88,6 @@ const finalScore = document.getElementById("final-score");
 // Show/Hide Screens
 function showScreen(screenId) {
   welcomeScreen.classList.add("hidden");
-  signupScreen.classList.add("hidden");
-  signinScreen.classList.add("hidden");
   levelScreen.classList.add("hidden");
   quizScreen.classList.add("hidden");
   resultsScreen.classList.add("hidden");
@@ -104,51 +95,12 @@ function showScreen(screenId) {
   document.getElementById(screenId).classList.remove("hidden");
 }
 
-// Start Quiz Button
-startBtn.addEventListener("click", () => {
-  showScreen("signin-screen");
-});
+// Show Welcome Screen (Start Button)
+showScreen("welcome-screen");
 
-// Sign Up Button
-signUpBtn.addEventListener("click", () => {
-  showScreen("signup-screen");
-});
-
-// Back to Welcome Screen from Sign Up
-backToWelcomeBtn.addEventListener("click", () => {
-  showScreen("welcome-screen");
-});
-
-// Back to Welcome Screen from Sign In
-backToWelcomeBtnSignin.addEventListener("click", () => {
-  showScreen("welcome-screen");
-});
-
-// Create Account (Sign Up)
-document.getElementById("signup-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("signup-name").value;
-  const password = document.getElementById("signup-password").value;
-
-  if (name && password.length >= 5) {
-    currentUser = { name, password };
-    showScreen("level-screen");
-  } else {
-    alert("Please provide a valid name and password (min 5 characters).");
-  }
-});
-
-// Sign In
-document.getElementById("signin-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("signin-name").value;
-  const password = document.getElementById("signin-password").value;
-
-  if (name === currentUser.name && password === currentUser.password) {
-    showScreen("level-screen");
-  } else {
-    alert("Invalid credentials, please sign up.");
-  }
+// Start Quiz
+startQuizBtn.addEventListener("click", () => {
+  showScreen("level-screen"); // Show level selection screen after clicking Start
 });
 
 // Level Selection
@@ -167,7 +119,7 @@ hardBtn.addEventListener("click", () => {
   startQuiz();
 });
 
-// Start Quiz
+// Start Quiz after selecting level
 function startQuiz() {
   currentQuestionIndex = 0;
   showScreen("quiz-screen");
