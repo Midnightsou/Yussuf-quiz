@@ -140,4 +140,4 @@ function endQuiz() {
     document.getElementById("quiz-screen").classList.add("hidden");
     document.getElementById("results-screen").classList.remove("hidden");
     document.getElementById("final-score").textContent = `${score} / ${currentQuestions.length}`;
-                                                              }
+}
