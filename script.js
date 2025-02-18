@@ -30,6 +30,10 @@ function signIn() {
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
 
+    console.log("Checking credentials...");
+    console.log("Stored Username:", storedUsername);
+    console.log("Stored Password:", storedPassword);
+
     if (username === storedUsername && password === storedPassword) {
         alert("Login successful!");
         showWelcomeScreen();
