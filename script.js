@@ -13,8 +13,10 @@ function signUp() {
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
 
-    alert("Account created! Please Sign In.");
-    showSignIn();
+    alert("Account created! Proceeding to Quiz.");
+
+    // Directly show level selection after sign up
+    showLevelSelection();
 }
 
 function signIn() {
@@ -67,7 +69,9 @@ function logout() {
 
 // Show Level Selection
 function showLevelSelection() {
-    document.getElementById("welcome-screen").classList.add("hidden");
+    // After sign up, skip the sign in screen and directly show level screen
+    document.getElementById("signup-screen").classList.add("hidden");
+    document.getElementById("signin-screen").classList.add("hidden");
     document.getElementById("level-screen").classList.remove("hidden");
 }
 
@@ -151,4 +155,20 @@ function endQuiz() {
     document.getElementById("quiz-screen").classList.add("hidden");
     document.getElementById("results-screen").classList.remove("hidden");
     document.getElementById("final-score").textContent = `${score} / ${currentQuestions.length}`;
-        }
+}
+
+// Restart Quiz
+function restartQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    showQuestion();
+    document.getElementById("results-screen").classList.add("hidden");
+    document.getElementById("quiz-screen").classList.remove("hidden");
+    startTimer();
+}
+
+// Return to Main Menu
+function goToMainMenu() {
+    document.getElementById("results-screen").classList.add("hidden");
+    document.getElementById("level-screen").classList.remove("hidden");
+                            }
