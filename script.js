@@ -1,4 +1,66 @@
-// Questions Data
+// Handle User Authentication
+function signUp() {
+    const username = document.getElementById("signup-username").value;
+    const password = document.getElementById("signup-password").value;
+
+    if (username === "" || password === "") {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // Save user to local storage
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+
+    alert("Account created! Please Sign In.");
+    showSignIn();
+}
+
+function signIn() {
+    const username = document.getElementById("signin-username").value;
+    const password = document.getElementById("signin-password").value;
+
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+
+    if (username === storedUsername && password === storedPassword) {
+        alert("Login successful!");
+        showWelcomeScreen();
+    } else {
+        alert("Incorrect username or password.");
+    }
+}
+
+// Show Screens
+function showSignUp() {
+    document.getElementById("signup-screen").classList.remove("hidden");
+    document.getElementById("signin-screen").classList.add("hidden");
+}
+
+function showSignIn() {
+    document.getElementById("signin-screen").classList.remove("hidden");
+    document.getElementById("signup-screen").classList.add("hidden");
+}
+
+function showWelcomeScreen() {
+    document.getElementById("signin-screen").classList.add("hidden");
+    document.getElementById("signup-screen").classList.add("hidden");
+    document.getElementById("welcome-screen").classList.remove("hidden");
+}
+
+// Logout Function
+function logout() {
+    document.getElementById("welcome-screen").classList.add("hidden");
+    document.getElementById("signin-screen").classList.remove("hidden");
+}
+
+// Show Level Selection
+function showLevelSelection() {
+    document.getElementById("welcome-screen").classList.add("hidden");
+    document.getElementById("level-screen").classList.remove("hidden");
+}
+
+// Quiz Functionality
 const questions = {
     easy: [
         ["Who was Prophet Yusuf's father?", ["Prophet Ya'qub", "Prophet Ibrahim", "Prophet Musa"], 0],
@@ -14,7 +76,6 @@ const questions = {
     ]
 };
 
-// Variables
 let currentLevel = "";
 let currentQuestions = [];
 let currentQuestionIndex = 0;
@@ -22,13 +83,6 @@ let score = 0;
 let timer;
 let timeLeft = 30;
 
-// Show Level Selection Screen
-function showLevelSelection() {
-    document.getElementById("welcome-screen").classList.add("hidden");
-    document.getElementById("level-screen").classList.remove("hidden");
-}
-
-// Start Quiz
 function startQuiz(level) {
     currentLevel = level;
     currentQuestions = [...questions[level]].sort(() => Math.random() - 0.5);
@@ -40,7 +94,6 @@ function startQuiz(level) {
     startTimer();
 }
 
-// Show Question
 function showQuestion() {
     if (currentQuestionIndex >= currentQuestions.length) {
         endQuiz();
@@ -53,7 +106,7 @@ function showQuestion() {
 
     const optionsContainer = document.getElementById("options-container");
     optionsContainer.innerHTML = "";
-    
+
     questionData[1].forEach((option, index) => {
         const btn = document.createElement("button");
         btn.textContent = option;
@@ -66,7 +119,6 @@ function showQuestion() {
     document.getElementById("quiz-screen").classList.add("fade");
 }
 
-// Check Answer
 function checkAnswer(selectedIndex) {
     if (selectedIndex === currentQuestions[currentQuestionIndex][2]) {
         score++;
@@ -74,7 +126,6 @@ function checkAnswer(selectedIndex) {
     nextQuestion();
 }
 
-// Next Question
 function nextQuestion() {
     if (currentQuestionIndex < currentQuestions.length - 1) {
         currentQuestionIndex++;
@@ -84,51 +135,9 @@ function nextQuestion() {
     }
 }
 
-// Previous Question
-function prevQuestion() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        showQuestion();
-    }
-}
-
-// Timer
-function startTimer() {
-    timeLeft = 30;
-    document.getElementById("time-left").textContent = timeLeft;
-    timer = setInterval(function () {
-        timeLeft--;
-        document.getElementById("time-left").textContent = timeLeft;
-        if (timeLeft === 0) {
-            nextQuestion();
-        }
-    }, 1000);
-}
-
-// End Quiz
 function endQuiz() {
     clearInterval(timer);
     document.getElementById("quiz-screen").classList.add("hidden");
     document.getElementById("results-screen").classList.remove("hidden");
     document.getElementById("final-score").textContent = `${score} / ${currentQuestions.length}`;
-
-    const answersContainer = document.getElementById("correct-answers");
-    answersContainer.innerHTML = "";
-    currentQuestions.forEach(function (q, index) {
-        const p = document.createElement("p");
-        p.textContent = `Q${index + 1}: ${q[0]} - Correct Answer: ${q[1][q[2]]}`;
-        answersContainer.appendChild(p);
-    });
-}
-
-// Restart Quiz
-function restartQuiz() {
-    document.getElementById("results-screen").classList.add("hidden");
-    document.getElementById("level-screen").classList.remove("hidden");
-}
-
-// Main Menu
-function goToMainMenu() {
-    document.getElementById("results-screen").classList.add("hidden");
-    document.getElementById("welcome-screen").classList.remove("hidden");
-        }
+                                                              }
