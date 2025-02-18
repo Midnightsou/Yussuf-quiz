@@ -1,200 +1,193 @@
-// DOM Elements
-const startButton = document.getElementById('start-btn');
-const levelScreen = document.getElementById('level-screen');
-const quizScreen = document.getElementById('quiz-screen');
-const resultsScreen = document.getElementById('results-screen');
-const signupScreen = document.getElementById('signup-screen');
-const signinScreen = document.getElementById('signin-screen');
-const welcomeScreen = document.getElementById('welcome-screen');
-const timerDisplay = document.getElementById('timer');
-const finalScoreDisplay = document.getElementById('final-score');
-const questionText = document.getElementById('question-text');
-const questionNumber = document.getElementById('question-number');
-const optionsContainer = document.getElementById('options-container');
-const nextButton = document.getElementById('next-btn');
-const prevButton = document.getElementById('prev-btn');
-const restartButton = document.getElementById('restart-btn');
-const mainMenuButton = document.getElementById('main-menu-btn');
-const showPasswordCheckbox = document.getElementById('show-password');
+document.addEventListener('DOMContentLoaded', function () {
+  // Elements
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const signupScreen = document.getElementById('signup-screen');
+  const signinScreen = document.getElementById('signin-screen');
+  const levelScreen = document.getElementById('level-screen');
+  const quizScreen = document.getElementById('quiz-screen');
+  const resultsScreen = document.getElementById('results-screen');
+  const startQuizBtn = document.getElementById('start-quiz-btn');
+  const signupBtn = document.getElementById('signup-btn');
+  const signinBtn = document.getElementById('signin-btn');
+  const signupForm = document.getElementById('signup-form');
+  const signinForm = document.getElementById('signin-form');
+  const showSignupPassword = document.getElementById('show-signup-password');
+  const showSigninPassword = document.getElementById('show-signin-password');
+  const restartBtn = document.getElementById('restart-btn');
+  const returnBtn = document.getElementById('return-btn');
 
-// Variables for quiz and user state
-let currentQuestionIndex = 0;
-let currentLevel = '';
-let timer;
-let timeLeft = 60;
-let score = 0;
-let userData = {};
+  let users = [];
+  let currentLevel = "";
+  let currentQuestionIndex = 0;
+  let currentScore = 0;
+  let currentQuestions = [];
 
-// Data for the questions (20 questions per level)
-const questions = {
-  easy: [
-    { question: "Who was the father of Prophet Yusuf?", options: ["Prophet Ya'qub", "Prophet Ibrahim", "Prophet Musa", "Prophet Muhammad"], correct: "Prophet Ya'qub" },
-    { question: "What was the first dream Prophet Yusuf saw?", options: ["Eleven stars and the sun and moon prostrating to him", "A full moon in the sky", "A white dove flying", "A lion roaring"], correct: "Eleven stars and the sun and moon prostrating to him" },
-    { question: "How many brothers did Prophet Yusuf have?", options: ["11", "12", "10", "9"], correct: "11" },
-    // Add 17 more questions for easy level
-  ],
-  medium: [
-    { question: "Who was the king of Egypt during Prophet Yusuf's time?", options: ["Pharaoh", "King of Egypt", "Cyrus", "Nebuchadnezzar"], correct: "Pharaoh" },
-    { question: "Who threw Prophet Yusuf into the well?", options: ["His brothers", "The Pharaoh's soldiers", "The caravan traders", "The people of Madyan"], correct: "His brothers" },
-    { question: "How long did Prophet Yusuf stay in prison?", options: ["7 years", "12 years", "10 years", "5 years"], correct: "7 years" },
-    // Add 17 more questions for medium level
-  ],
-  hard: [
-    { question: "How did Prophet Yusuf interpret the dream of the king?", options: ["7 years of good harvest followed by 7 years of famine", "7 years of drought", "7 years of prosperity", "7 years of warfare"], correct: "7 years of good harvest followed by 7 years of famine" },
-    { question: "What was the name of the woman who tried to seduce Prophet Yusuf?", options: ["Zulaykha", "Fatima", "Aisha", "Hawa"], correct: "Zulaykha" },
-    { question: "Where was Prophet Yusuf thrown into the well?", options: ["In the desert", "In the river", "In the valley", "In the forest"], correct: "In the desert" },
-    // Add 17 more questions for hard level
-  ],
-};
+  // Questions for each level
+  const questions = {
+    easy: [
+      { question: "Who was the father of Prophet Yusuf?", options: ["Prophet Ya'qub", "Prophet Ibrahim", "Prophet Musa", "Prophet Muhammad"], correct: 0 },
+      { question: "Which king had a dream that Prophet Yusuf interpreted?", options: ["King Pharaoh", "King Nebuchadnezzar", "King Nimrod", "King Herod"], correct: 0 },
+      { question: "What was the profession of Prophet Yusuf's brothers?", options: ["Shepherds", "Farmers", "Merchants", "Soldiers"], correct: 0 },
+      { question: "Who was the person who bought Prophet Yusuf as a slave in Egypt?", options: ["Al-Aziz", "Pharaoh", "Haman", "Imam Ali"], correct: 0 },
+      { question: "What was the dream Prophet Yusuf had?", options: ["Eleven stars and the sun and moon", "Seven cows and seven ears of corn", "A lion and a wolf", "A flying horse"], correct: 0 },
+      // Add more questions as needed (total 20 questions for easy level)
+    ],
+    medium: [
+      { question: "What was the name of Prophet Yusuf’s mother?", options: ["Rahil", "Hannah", "Asiyah", "Amina"], correct: 0 },
+      { question: "Who tried to seduce Prophet Yusuf?", options: ["The wife of Al-Aziz", "The daughter of Pharaoh", "The daughter of Imran", "The wife of Harun"], correct: 0 },
+      { question: "Which animal did Prophet Yusuf's brothers use to deceive their father about his death?", options: ["Wolf", "Lion", "Goat", "Snake"], correct: 0 },
+      { question: "How many years was Prophet Yusuf imprisoned?", options: ["Seven", "Ten", "Twelve", "Fourteen"], correct: 0 },
+      { question: "Which city was Prophet Yusuf taken to as a slave?", options: ["Egypt", "Jerusalem", "Makkah", "Medina"], correct: 0 },
+      // Add more questions as needed (total 20 questions for medium level)
+    ],
+    hard: [
+      { question: "What did Prophet Yusuf's brothers do to him after they threw him in the well?", options: ["They lied to their father", "They rescued him", "They set him free", "They killed him"], correct: 0 },
+      { question: "How did Prophet Yusuf react when his brothers came to him for help in Egypt?", options: ["He forgave them", "He punished them", "He sent them away", "He ignored them"], correct: 0 },
+      { question: "What did Prophet Yusuf interpret as a sign from Allah when he was in prison?", options: ["The dreams of two prisoners", "A vision of the Kaaba", "The moon in the sky", "A voice calling him"], correct: 0 },
+      { question: "Who was the only person who believed in Prophet Yusuf's innocence when he was accused?", options: ["Al-Aziz's wife", "Al-Aziz", "His brothers", "The king of Egypt"], correct: 0 },
+      { question: "What is the meaning of the name 'Yusuf'?", options: ["God increases", "God saves", "God loves", "God creates"], correct: 0 },
+      // Add more questions as needed (total 20 questions for hard level)
+    ]
+  };
 
-// To show the Welcome Screen and start quiz
-startButton.addEventListener('click', () => {
-  welcomeScreen.classList.add('hidden');
-  levelScreen.classList.remove('hidden');
-});
-
-// Show sign-up page
-function showSignup() {
-  signinScreen.classList.add('hidden');
-  signupScreen.classList.remove('hidden');
-}
-
-// Show sign-in page
-function showSignin() {
-  signupScreen.classList.add('hidden');
-  signinScreen.classList.remove('hidden');
-}
-
-// Show the quiz start page based on level
-function startQuiz(level) {
-  currentLevel = level;
-  currentQuestionIndex = 0;
-  score = 0;
-  timeLeft = 60;
-  
-  levelScreen.classList.add('hidden');
-  quizScreen.classList.remove('hidden');
-  loadQuestion();
-  startTimer();
-}
-
-// Timer logic
-function startTimer() {
-  timer = setInterval(() => {
-    if (timeLeft > 0) {
-      timeLeft--;
-      timerDisplay.textContent = `Time Left: ${timeLeft}s`;
-    } else {
-      clearInterval(timer);
-      endQuiz();
-    }
-  }, 1000);
-}
-
-// Load current question
-function loadQuestion() {
-  const question = questions[currentLevel][currentQuestionIndex];
-  questionNumber.textContent = `Question ${currentQuestionIndex + 1}`;
-  questionText.textContent = question.question;
-
-  optionsContainer.innerHTML = '';
-  question.options.forEach((option) => {
-    const optionButton = document.createElement('button');
-    optionButton.textContent = option;
-    optionButton.addEventListener('click', () => checkAnswer(option));
-    optionsContainer.appendChild(optionButton);
+  // Show password toggle
+  showSignupPassword.addEventListener('change', function () {
+    const passwordField = document.getElementById('signup-password');
+    passwordField.type = this.checked ? 'text' : 'password';
   });
 
-  nextButton.classList.add('hidden');
-  prevButton.classList.add('hidden');
-}
+  showSigninPassword.addEventListener('change', function () {
+    const passwordField = document.getElementById('signin-password');
+    passwordField.type = this.checked ? 'text' : 'password';
+  });
 
-// Check the selected answer
-function checkAnswer(selectedOption) {
-  const correctAnswer = questions[currentLevel][currentQuestionIndex].correct;
-  if (selectedOption === correctAnswer) {
-    score++;
-  }
-  nextButton.classList.remove('hidden');
-}
+  // Start Quiz button - Show Sign In or Sign Up page
+  startQuizBtn.addEventListener('click', function () {
+    welcomeScreen.classList.add('hidden');
+    signinScreen.classList.remove('hidden');
+  });
 
-// Move to next question
-nextButton.addEventListener('click', () => {
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions[currentLevel].length) {
-    loadQuestion();
-  } else {
-    endQuiz();
-  }
-});
+  // Sign Up button - Handle Sign Up
+  signupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const username = document.getElementById('signup-username').value;
+    const password = document.getElementById('signup-password').value;
 
-// Move to previous question
-prevButton.addEventListener('click', () => {
-  if (currentQuestionIndex > 0) {
-    currentQuestionIndex--;
-    loadQuestion();
-  }
-});
-
-// End the quiz
-function endQuiz() {
-  quizScreen.classList.add('hidden');
-  resultsScreen.classList.remove('hidden');
-  finalScoreDisplay.textContent = `Your Score: ${score}/${questions[currentLevel].length}`;
-}
-
-// Restart the quiz
-restartButton.addEventListener('click', () => {
-  score = 0;
-  currentQuestionIndex = 0;
-  timeLeft = 60;
-  startQuiz(currentLevel);
-});
-
-// Go back to main menu
-mainMenuButton.addEventListener('click', () => {
-  resultsScreen.classList.add('hidden');
-  welcomeScreen.classList.remove('hidden');
-});
-
-// Sign-in functionality
-document.getElementById('signin-btn').addEventListener('click', () => {
-  const username = document.getElementById('signin-username').value;
-  const password = document.getElementById('signin-password').value;
-
-  if (username && password) {
-    if (localStorage.getItem(username) === password) {
-      alert("Sign in successful!");
-      showSignin();
+    // Validation
+    if (username && password.length >= 5) {
+      users.push({ username, password });
+      alert('Account created successfully!');
+      signinScreen.classList.remove('hidden');
+      signupScreen.classList.add('hidden');
     } else {
-      alert("Incorrect credentials!");
+      alert('Username and password must be at least 5 characters.');
     }
-  } else {
-    alert("Please enter username and password.");
+  });
+
+  // Sign In button - Handle Sign In
+  signinForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const username = document.getElementById('signin-username').value;
+    const password = document.getElementById('signin-password').value;
+
+    // Check if the user exists
+    const user = users.find(u => u.username === username && u.password === password);
+    if (user) {
+      signinScreen.classList.add('hidden');
+      levelScreen.classList.remove('hidden');
+    } else {
+      alert('Invalid username or password');
+    }
+  });
+
+  // Level selection buttons
+  document.getElementById('easy-btn').addEventListener('click', function () {
+    currentLevel = 'easy';
+    currentQuestions = shuffleArray(questions.easy);
+    startQuiz();
+  });
+
+  document.getElementById('medium-btn').addEventListener('click', function () {
+    currentLevel = 'medium';
+    currentQuestions = shuffleArray(questions.medium);
+    startQuiz();
+  });
+
+  document.getElementById('hard-btn').addEventListener('click', function () {
+    currentLevel = 'hard';
+    currentQuestions = shuffleArray(questions.hard);
+    startQuiz();
+  });
+
+  // Start Quiz based on selected level
+  function startQuiz() {
+    levelScreen.classList.add('hidden');
+    quizScreen.classList.remove('hidden');
+    currentScore = 0;
+    currentQuestionIndex = 0;
+    displayQuestion();
   }
-});
 
-// Sign-up functionality
-document.getElementById('signup-btn').addEventListener('click', () => {
-  const username = document.getElementById('signup-username').value;
-  const password = document.getElementById('signup-password').value;
+  // Display Question
+  function displayQuestion() {
+    const question = currentQuestions[currentQuestionIndex];
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    questionText.textContent = question.question;
 
-  if (username && password.length >= 5) {
-    localStorage.setItem(username, password);
-    alert("Sign-up successful!");
-    signupScreen.classList.add('hidden');
-    levelScreen.classList.remove('hidden');
-  } else {
-    alert("Please enter a valid username and password (minimum 5 characters).");
+    optionsContainer.innerHTML = '';
+    question.options.forEach((option, index) => {
+      const button = document.createElement('button');
+      button.textContent = option;
+      button.addEventListener('click', () => checkAnswer(index));
+      optionsContainer.appendChild(button);
+    });
   }
-});
 
-// Show/hide password feature
-showPasswordCheckbox.addEventListener('change', () => {
-  const passwordField = document.getElementById('signup-password');
-  if (showPasswordCheckbox.checked) {
-    passwordField.type = 'text';
-  } else {
-    passwordField.type = 'password';
+  // Check answer and move to next question
+  function checkAnswer(selectedIndex) {
+    const question = currentQuestions[currentQuestionIndex];
+    if (selectedIndex === question.correct) {
+      currentScore++;
+    }
+
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuestions.length) {
+      displayQuestion();
+    } else {
+      showResults();
+    }
+  }
+
+  // Show Results
+  function showResults() {
+    quizScreen.classList.add('hidden');
+    resultsScreen.classList.remove('hidden');
+    document.getElementById('final-score').textContent = `Your score: ${currentScore} / 20`;
+  }
+
+  // Restart button - Restart Quiz
+  restartBtn.addEventListener('click', function () {
+    quizScreen.classList.remove('hidden');
+    resultsScreen.classList.add('hidden');
+    currentQuestionIndex = 0;
+    currentScore = 0;
+    displayQuestion();
+  });
+
+  // Return button - Go back to Welcome Screen
+  returnBtn.addEventListener('click', function () {
+    resultsScreen.classList.add('hidden');
+    welcomeScreen.classList.remove('hidden');
+  });
+
+  // Shuffle array function to randomize questions
+  function shuffleArray(array) {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
   }
 });
