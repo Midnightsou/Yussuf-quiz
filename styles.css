@@ -1,224 +1,161 @@
-/* Basic Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Basic Styles */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  overflow-x: hidden;
+  background-color: #F4F6F9; /* Light gray background */
+  color: #2C3E50; /* Dark gray text for readability */
+  text-align: center;
+  padding: 20px;
 }
 
+/* Hidden class for hiding elements */
 .hidden {
   display: none;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Welcome Page */
-#welcome-screen {
-  text-align: center;
-  padding-top: 50px;
-}
-
-#welcome-screen h1 {
-  font-size: 36px;
-  color: #2c3e50;
-  margin-bottom: 30px;
-}
-
-#welcome-screen button {
-  font-size: 20px;
-  padding: 15px 30px;
-  background-color: #1abc9c;
-  border: none;
-  border-radius: 5px;
+/* Buttons and Forms */
+button {
+  background-color: #004d40; /* Deep Green - Islamic theme */
   color: white;
+  padding: 10px 20px;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#welcome-screen button:hover {
-  background-color: #16a085;
-}
-
-/* Level Screen */
-#level-screen {
-  text-align: center;
-  padding-top: 50px;
-}
-
-#level-screen h2 {
-  font-size: 30px;
-  color: #2c3e50;
-  margin-bottom: 30px;
-}
-
-#level-screen button {
-  font-size: 22px;
-  padding: 15px 30px;
   margin: 10px;
-  background-color: #1abc9c;
-  border: none;
   border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
-#level-screen button:hover {
-  background-color: #16a085;
+button:hover {
+  background-color: #00796b; /* Lighter green on hover */
 }
 
-/* Sign Up / Sign In Screen */
-#signup-screen, #signin-screen {
-  text-align: center;
-  padding: 50px;
-}
-
-input {
+/* Input fields for forms */
+input[type="text"], input[type="password"] {
+  padding: 12px;
+  margin: 10px;
   width: 80%;
-  padding: 10px;
-  margin: 10px 0;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #004d40; /* Green border */
+  font-size: 16px;
 }
 
-#show-password {
-  margin: 10px;
+/* Titles and Headings */
+h1, h2 {
+  font-family: 'Arial', sans-serif;
+  color: #004d40; /* Dark green for titles */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Background for screens */
+#signup-screen, #signin-screen, #level-screen, #quiz-screen, #results-screen {
+  background-color: #e8f5e9; /* Light Greenish Background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Specific styling for forms */
+#signup-form, #signin-form {
+  text-align: left;
+  width: 300px;
+  margin: 0 auto;
 }
 
 input[type="checkbox"] {
-  transform: scale(1.2);
+  margin-left: 10px;
 }
 
-button#signin-btn, button#signup-btn {
-  font-size: 18px;
-  padding: 12px 25px;
-  background-color: #1abc9c;
-  border: none;
-  border-radius: 5px;
+/* Styling for Buttons on the level screen */
+#level-screen button {
+  background-color: #8e44ad; /* Purple - gives an Islamic artistic feel */
   color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 15px 25px;
+  font-size: 18px;
 }
 
-button#signin-btn:hover, button#signup-btn:hover {
-  background-color: #16a085;
+#level-screen button:hover {
+  background-color: #9b59b6; /* Lighter Purple on hover */
 }
 
-/* Quiz Screen */
-#quiz-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Styling for the Quiz and Results Screens */
+#quiz-screen, #results-screen {
+  background-color: #ffffff; /* White background for quiz results */
   padding: 20px;
-}
-
-#quiz-screen h3 {
-  font-size: 24px;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 #question-text {
   font-size: 20px;
+  color: #2C3E50;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 #options-container button {
-  margin: 5px 0;
-  font-size: 18px;
-  padding: 12px 25px;
-  border-radius: 5px;
-  width: 80%;
-  background-color: #1abc9c;
+  background-color: #3498db; /* Blue buttons */
   color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 #options-container button:hover {
-  background-color: #16a085;
+  background-color: #2980b9; /* Darker blue on hover */
 }
 
-#next-btn, #prev-btn {
-  margin-top: 20px;
-}
-
-#timer {
-  font-size: 22px;
-  color: #2c3e50;
-  margin-top: 20px;
-}
-
-/* Results Page */
-#results-screen {
-  text-align: center;
-  padding: 50px;
-}
-
+/* Styling for the Result Screen */
 #final-score {
   font-size: 30px;
-  color: #2c3e50;
-  margin-top: 20px;
+  color: #2C3E50;
+  font-weight: bold;
 }
 
 #results-screen button {
-  font-size: 20px;
-  padding: 15px 25px;
-  margin-top: 20px;
-  background-color: #1abc9c;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #d35400; /* Orange color for action buttons */
 }
 
 #results-screen button:hover {
-  background-color: #16a085;
+  background-color: #e67e22; /* Lighter Orange on hover */
 }
 
-/* Transitions for Question Fading */
-.fade {
-  opacity: 0;
-  transition: opacity 1s ease;
+/* General Adjustments */
+input, button {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
 }
 
-.fade-in {
-  opacity: 1;
-}
-
-/* General Layout */
-h1, h2, h3, p {
+h2, h1 {
   font-family: 'Arial', sans-serif;
 }
 
-button {
-  font-size: 18px;
-  cursor: pointer;
-}
-
 input[type="text"], input[type="password"] {
-  font-size: 18px;
-  padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  width: 80%;
-  margin-bottom: 10px;
 }
 
-input[type="checkbox"] {
-  margin: 10px;
-  transform: scale(1.2);
+#start-quiz-btn {
+  background-color: #004d40; /* Green for the Start Quiz button */
+  color: white;
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+#start-quiz-btn:hover {
+  background-color: #00796b; /* Light green on hover */
+}
+
+/* Centering the content */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Small screen adjustments */
+@media screen and (max-width: 600px) {
+  input[type="text"], input[type="password"], button {
+    width: 90%;
+  }
 }
