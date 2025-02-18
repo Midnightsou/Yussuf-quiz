@@ -3,39 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prophet Yusuf Quiz</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Islamic Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen">
+        <h1>Welcome to the Islamic Quiz!</h1>
+        <button onclick="showSignUp()">Sign Up</button>
+        <button onclick="showSignIn()">Sign In</button>
+    </div>
 
     <!-- Sign Up Screen -->
-    <div id="signup-screen">
+    <div id="signup-screen" class="hidden">
         <h2>Sign Up</h2>
-        <input type="text" id="signup-username" placeholder="Username">
-        <input type="password" id="signup-password" placeholder="Password">
-        <button onclick="signUp()">Sign Up</button>
-        <p>Already have an account? <a href="#" onclick="showSignIn()">Sign In</a></p>
+        <input type="text" id="signup-username" placeholder="Username" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <button onclick="signUp()">Create Account</button>
+        <button onclick="showSignIn()">Already have an account? Sign In</button>
     </div>
 
     <!-- Sign In Screen -->
     <div id="signin-screen" class="hidden">
         <h2>Sign In</h2>
-        <input type="text" id="signin-username" placeholder="Username">
-        <input type="password" id="signin-password" placeholder="Password">
+        <input type="text" id="signin-username" placeholder="Username" required>
+        <input type="password" id="signin-password" placeholder="Password" required>
         <button onclick="signIn()">Sign In</button>
-        <p>Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
-    </div>
-
-    <!-- Welcome Screen (after login) -->
-    <div id="welcome-screen" class="hidden">
-        <h1>Welcome to the Prophet Yusuf Quiz</h1>
-        <button onclick="showLevelSelection()">Start Quiz</button>
-        <button onclick="logout()">Logout</button>
+        <button onclick="showSignUp()">Don't have an account? Sign Up</button>
     </div>
 
     <!-- Level Selection Screen -->
     <div id="level-screen" class="hidden">
-        <h2>Select Difficulty</h2>
+        <h2>Select a Difficulty Level</h2>
         <button onclick="startQuiz('easy')">Easy</button>
         <button onclick="startQuiz('medium')">Medium</button>
         <button onclick="startQuiz('hard')">Hard</button>
@@ -46,19 +45,14 @@
         <h2 id="question-number"></h2>
         <p id="question-text"></p>
         <div id="options-container"></div>
-        <p>Time Left: <span id="time-left">30</span> seconds</p>
-        <button onclick="prevQuestion()">Previous</button>
-        <button onclick="nextQuestion()">Next</button>
+        <div id="timer">Time Left: <span id="time-left">30</span> seconds</div>
     </div>
 
     <!-- Results Screen -->
     <div id="results-screen" class="hidden">
-        <h2>Quiz Completed!</h2>
-        <p>Your Score: <span id="final-score"></span></p>
-        <h3>Correct Answers:</h3>
-        <div id="correct-answers"></div>
+        <h2>Your Final Score: <span id="final-score"></span></h2>
         <button onclick="restartQuiz()">Restart Quiz</button>
-        <button onclick="goToMainMenu()">Main Menu</button>
+        <button onclick="goToMainMenu()">Return to Main Menu</button>
     </div>
 
     <script src="script.js"></script>
