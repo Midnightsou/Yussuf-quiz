@@ -1,39 +1,185 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f1f1f1; /* Light neutral background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #2c3e50; /* Dark blue for text */
+}
+
+h1, h2 {
+    color: #1a3d26; /* Deep green for titles */
     text-align: center;
-    background-color: #f4f4f4;
-    padding: 20px;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #16a085; /* Islamic green for buttons */
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1abc9c; /* Slightly lighter green on hover */
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    width: 80%;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #eaf0f1; /* Light grey-blue for input fields */
+}
+
+label {
+    font-size: 14px;
+    color: #7f8c8d;
 }
 
 .hidden {
     display: none;
 }
 
-button {
-    background-color: #008CBA;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
+#timer {
+    font-size: 20px;
+    color: #e74c3c; /* Red for timer, to show urgency */
+}
+
+#quiz-screen, #level-screen, #results-screen {
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #16a085; /* Green border around containers */
+}
+
+#question-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1a3d26; /* Deep green for question number */
+}
+
+#question-text {
     font-size: 18px;
+    margin-bottom: 20px;
+    color: #34495e; /* Dark grey-blue for question text */
 }
 
-button:hover {
-    background-color: #005f73;
+#options-container button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f39c12; /* Islamic gold for options */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-#options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+#options-container button:hover {
+    background-color: #f1c40f; /* Lighter gold on hover */
 }
 
-.fade {
-    animation: fadeIn 0.5s ease-in-out;
+/* Styling for the Welcome Screen */
+#welcome-screen {
+    text-align: center;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+#welcome-screen h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #16a085; /* Islamic green */
 }
+
+#welcome-screen button {
+    margin: 10px;
+    background-color: #1abc9c; /* Green buttons */
+    color: white;
+}
+
+/* Sign Up / Sign In Forms */
+#signup-screen, #signin-screen {
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #16a085; /* Green border around form */
+}
+
+#signup-screen input,
+#signin-screen input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#signup-screen label,
+#signin-screen label {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+#signup-screen button,
+#signin-screen button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Styling for the Level Screen */
+#level-screen {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#level-screen h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1a3d26; /* Green color for level heading */
+}
+
+/* Results Screen */
+#results-screen {
+    padding: 30px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#final-score {
+    font-size: 30px;
+    font-weight: bold;
+    color: #1abc9c; /* Islamic green for final score */
+}
+
+#results-screen button {
+    margin-top: 20px;
+    width: 45%;
+    display: inline-block;
+}
+
+/* Timer Styling */
+#timer {
+    font-size: 18px;
+    color: #e74c3c;
+    }
