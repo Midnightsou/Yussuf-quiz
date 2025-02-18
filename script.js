@@ -3,6 +3,7 @@ function signUp() {
     const username = document.getElementById("signup-username").value;
     const password = document.getElementById("signup-password").value;
 
+    // Validation: Check if fields are empty
     if (username === "" || password === "") {
         alert("Please fill in all fields.");
         return;
@@ -19,6 +20,12 @@ function signUp() {
 function signIn() {
     const username = document.getElementById("signin-username").value;
     const password = document.getElementById("signin-password").value;
+
+    // Validation: Check if fields are empty
+    if (username === "" || password === "") {
+        alert("Please fill in both fields.");
+        return;
+    }
 
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
@@ -140,4 +147,4 @@ function endQuiz() {
     document.getElementById("quiz-screen").classList.add("hidden");
     document.getElementById("results-screen").classList.remove("hidden");
     document.getElementById("final-score").textContent = `${score} / ${currentQuestions.length}`;
-}
+        }
