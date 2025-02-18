@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Quiz App</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Islamic Quiz App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Welcome Screen -->
-    <div id="welcome-screen">
-        <h1>Welcome to the Islamic Quiz App</h1>
-        <button id="start-quiz-btn">Start Quiz</button>
-    </div>
+  <!-- Welcome Screen -->
+  <div id="welcome-screen">
+    <h1>Welcome to the Islamic Quiz</h1>
+    <button id="start-quiz-btn">Start Quiz</button>
+  </div>
 
-    <!-- Sign Up Screen -->
-    <div id="signup-screen" class="hidden">
-        <h2>Create an Account</h2>
-        <form id="signup-form">
-            <input type="text" id="signup-username" placeholder="Enter Username" required><br>
-            <input type="password" id="signup-password" placeholder="Enter Password" required><br>
-            <input type="checkbox" id="show-signup-password"> Show Password<br><br>
-            <button type="submit" id="signup-btn">Sign Up</button>
-        </form>
-    </div>
+  <!-- Sign Up Screen -->
+  <div id="signup-screen" class="hidden">
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+      <input type="text" id="signup-username" placeholder="Enter Username" required>
+      <input type="password" id="signup-password" placeholder="Enter Password" required>
+      <input type="checkbox" id="show-signup-password"> Show Password
+      <button type="submit" id="signup-btn">Sign Up</button>
+    </form>
+  </div>
 
-    <!-- Sign In Screen -->
-    <div id="signin-screen" class="hidden">
-        <h2>Sign In</h2>
-        <form id="signin-form">
-            <input type="text" id="signin-username" placeholder="Enter Username" required><br>
-            <input type="password" id="signin-password" placeholder="Enter Password" required><br>
-            <input type="checkbox" id="show-signin-password"> Show Password<br><br>
-            <button type="submit" id="signin-btn">Sign In</button>
-        </form>
-    </div>
+  <!-- Sign In Screen -->
+  <div id="signin-screen" class="hidden">
+    <h2>Sign In</h2>
+    <form id="signin-form">
+      <input type="text" id="signin-username" placeholder="Enter Username" required>
+      <input type="password" id="signin-password" placeholder="Enter Password" required>
+      <input type="checkbox" id="show-signin-password"> Show Password
+      <button type="submit" id="signin-btn">Sign In</button>
+    </form>
+  </div>
 
-    <!-- Level Selection Page -->
-    <div id="level-screen" class="hidden">
-        <h2>Select Difficulty Level</h2>
-        <button id="easy-btn">Easy</button>
-        <button id="medium-btn">Medium</button>
-        <button id="hard-btn">Hard</button>
-    </div>
+  <!-- Level Screen -->
+  <div id="level-screen" class="hidden">
+    <h2>Select Difficulty Level</h2>
+    <button id="easy-btn">Easy</button>
+    <button id="medium-btn">Medium</button>
+    <button id="hard-btn">Hard</button>
+  </div>
 
-    <!-- Quiz Page (after sign in) -->
-    <div id="quiz-screen" class="hidden">
-        <!-- Quiz content will go here -->
-    </div>
+  <!-- Quiz Screen -->
+  <div id="quiz-screen" class="hidden">
+    <h2 id="question-text"></h2>
+    <div id="options-container"></div>
+  </div>
 
-    <!-- Results Page -->
-    <div id="results-screen" class="hidden">
-        <h2>Quiz Completed!</h2>
-        <p id="final-score"></p>
-        <button id="restart-btn">Restart Quiz</button>
-        <button id="return-btn">Return to Main Menu</button>
-    </div>
+  <!-- Results Screen -->
+  <div id="results-screen" class="hidden">
+    <h2>Your Final Score: <span id="final-score"></span></h2>
+    <button id="restart-btn">Restart Quiz</button>
+    <button id="return-btn">Return to Main Menu</button>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
-        </html>
+</html>
