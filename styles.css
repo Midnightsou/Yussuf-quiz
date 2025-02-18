@@ -32,24 +32,17 @@ h1, h2 {
   color: #006e53; /* Islamic green */
 }
 
-#welcome-form input {
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid #006e53;
-  border-radius: 5px;
-  width: 200px;
-}
-
-#welcome-form button {
-  padding: 10px 20px;
+#welcome-screen button {
+  padding: 15px 30px;
   background-color: #006e53; /* Islamic green */
   color: white;
   border: none;
   border-radius: 5px;
+  font-size: 1.2em;
   cursor: pointer;
 }
 
-#welcome-form button:hover {
+#welcome-screen button:hover {
   background-color: #004d39; /* Darker green for hover */
 }
 
@@ -147,4 +140,4 @@ h1, h2 {
 
 #restart-btn:hover, #return-to-main-btn:hover {
   background-color: #004d39; /* Darker green for hover */
-}
+  }
