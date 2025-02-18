@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
       { question: "What was the profession of Prophet Yusuf's brothers?", options: ["Shepherds", "Farmers", "Merchants", "Soldiers"], correct: 0 },
       { question: "Who was the person who bought Prophet Yusuf as a slave in Egypt?", options: ["Al-Aziz", "Pharaoh", "Haman", "Imam Ali"], correct: 0 },
       { question: "What was the dream Prophet Yusuf had?", options: ["Eleven stars and the sun and moon", "Seven cows and seven ears of corn", "A lion and a wolf", "A flying horse"], correct: 0 },
-      // Add more questions as needed (total 20 questions for easy level)
+      // Add more questions for easy level (total 20 questions)
     ],
     medium: [
       { question: "What was the name of Prophet Yusuf’s mother?", options: ["Rahil", "Hannah", "Asiyah", "Amina"], correct: 0 },
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
       { question: "Which animal did Prophet Yusuf's brothers use to deceive their father about his death?", options: ["Wolf", "Lion", "Goat", "Snake"], correct: 0 },
       { question: "How many years was Prophet Yusuf imprisoned?", options: ["Seven", "Ten", "Twelve", "Fourteen"], correct: 0 },
       { question: "Which city was Prophet Yusuf taken to as a slave?", options: ["Egypt", "Jerusalem", "Makkah", "Medina"], correct: 0 },
-      // Add more questions as needed (total 20 questions for medium level)
+      // Add more questions for medium level (total 20 questions)
     ],
     hard: [
       { question: "What did Prophet Yusuf's brothers do to him after they threw him in the well?", options: ["They lied to their father", "They rescued him", "They set him free", "They killed him"], correct: 0 },
@@ -46,11 +46,11 @@ document.addEventListener('DOMContentLoaded', function () {
       { question: "What did Prophet Yusuf interpret as a sign from Allah when he was in prison?", options: ["The dreams of two prisoners", "A vision of the Kaaba", "The moon in the sky", "A voice calling him"], correct: 0 },
       { question: "Who was the only person who believed in Prophet Yusuf's innocence when he was accused?", options: ["Al-Aziz's wife", "Al-Aziz", "His brothers", "The king of Egypt"], correct: 0 },
       { question: "What is the meaning of the name 'Yusuf'?", options: ["God increases", "God saves", "God loves", "God creates"], correct: 0 },
-      // Add more questions as needed (total 20 questions for hard level)
+      // Add more questions for hard level (total 20 questions)
     ]
   };
 
-  // Show password toggle
+  // Show password toggle for signup and signin forms
   showSignupPassword.addEventListener('change', function () {
     const passwordField = document.getElementById('signup-password');
     passwordField.type = this.checked ? 'text' : 'password';
