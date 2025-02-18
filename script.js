@@ -9,11 +9,17 @@ function signUp() {
         return;
     }
 
+    // Check if user already exists
+    if (localStorage.getItem("username") === username) {
+        alert("Username already exists. Please log in.");
+        return;
+    }
+
     // Save user to local storage
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
 
-    alert("Account created! Proceeding to Quiz.");
+    alert("Account created successfully!");
 
     // Directly show level selection after sign up
     showLevelSelection();
@@ -32,13 +38,10 @@ function signIn() {
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
 
-    console.log("Checking credentials...");
-    console.log("Stored Username:", storedUsername);
-    console.log("Stored Password:", storedPassword);
-
+    // Check if credentials are correct
     if (username === storedUsername && password === storedPassword) {
         alert("Login successful!");
-        showWelcomeScreen();
+        showLevelSelection();
     } else {
         alert("Incorrect username or password.");
     }
@@ -55,24 +58,16 @@ function showSignIn() {
     document.getElementById("signup-screen").classList.add("hidden");
 }
 
+function showLevelSelection() {
+    document.getElementById("signup-screen").classList.add("hidden");
+    document.getElementById("signin-screen").classList.add("hidden");
+    document.getElementById("level-screen").classList.remove("hidden");
+}
+
 function showWelcomeScreen() {
     document.getElementById("signin-screen").classList.add("hidden");
     document.getElementById("signup-screen").classList.add("hidden");
     document.getElementById("welcome-screen").classList.remove("hidden");
-}
-
-// Logout Function
-function logout() {
-    document.getElementById("welcome-screen").classList.add("hidden");
-    document.getElementById("signin-screen").classList.remove("hidden");
-}
-
-// Show Level Selection
-function showLevelSelection() {
-    // After sign up, skip the sign in screen and directly show level screen
-    document.getElementById("signup-screen").classList.add("hidden");
-    document.getElementById("signin-screen").classList.add("hidden");
-    document.getElementById("level-screen").classList.remove("hidden");
 }
 
 // Quiz Functionality
@@ -98,6 +93,7 @@ let score = 0;
 let timer;
 let timeLeft = 30;
 
+// Start the quiz based on level
 function startQuiz(level) {
     currentLevel = level;
     currentQuestions = [...questions[level]].sort(() => Math.random() - 0.5);
@@ -109,6 +105,7 @@ function startQuiz(level) {
     startTimer();
 }
 
+// Show each question with answer options
 function showQuestion() {
     if (currentQuestionIndex >= currentQuestions.length) {
         endQuiz();
@@ -134,6 +131,7 @@ function showQuestion() {
     document.getElementById("quiz-screen").classList.add("fade");
 }
 
+// Check the answer and move to next question
 function checkAnswer(selectedIndex) {
     if (selectedIndex === currentQuestions[currentQuestionIndex][2]) {
         score++;
@@ -141,6 +139,7 @@ function checkAnswer(selectedIndex) {
     nextQuestion();
 }
 
+// Move to the next question or end the quiz
 function nextQuestion() {
     if (currentQuestionIndex < currentQuestions.length - 1) {
         currentQuestionIndex++;
@@ -150,6 +149,7 @@ function nextQuestion() {
     }
 }
 
+// End the quiz and show the results
 function endQuiz() {
     clearInterval(timer);
     document.getElementById("quiz-screen").classList.add("hidden");
@@ -157,18 +157,18 @@ function endQuiz() {
     document.getElementById("final-score").textContent = `${score} / ${currentQuestions.length}`;
 }
 
-// Restart Quiz
+// Restart Quiz: Reset the quiz state
 function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-    showQuestion();
+    showQuestion();  // Restart from the first question
     document.getElementById("results-screen").classList.add("hidden");
     document.getElementById("quiz-screen").classList.remove("hidden");
-    startTimer();
+    startTimer();  // Restart timer
 }
 
-// Return to Main Menu
+// Return to Main Menu: Go back to the level selection
 function goToMainMenu() {
     document.getElementById("results-screen").classList.add("hidden");
     document.getElementById("level-screen").classList.remove("hidden");
-                            }
+                }
