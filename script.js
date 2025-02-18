@@ -2,28 +2,19 @@
 const questions = {
     easy: [
         ["Who was Prophet Yusuf's father?", ["Prophet Ya'qub", "Prophet Ibrahim", "Prophet Musa"], 0],
-        ["What did Prophet Yusuf see in his dream?", ["Eleven stars", "A full moon", "A burning tree"], 0],
-        ["How many brothers did Prophet Yusuf have?", ["Twelve", "Ten", "Seven"], 0],
-        ["Where was Prophet Yusuf thrown into?", ["A well", "A cave", "A dungeon"], 0],
-        ["Who bought Prophet Yusuf in Egypt?", ["A merchant", "The king", "Al-Aziz"], 2]
+        ["What did Prophet Yusuf see in his dream?", ["Eleven stars", "A full moon", "A burning tree"], 0]
     ],
     medium: [
         ["How many brothers did Prophet Yusuf have?", ["Ten", "Eleven", "Twelve"], 1],
-        ["What was the interpretation of the king’s dream?", ["Years of plenty followed by years of famine", "A new ruler will come", "Egypt will prosper"], 0],
-        ["What was Prophet Yusuf’s job in Egypt after his release?", ["He managed the food supply", "He was a general", "He worked in the palace"], 0],
-        ["Who did Prophet Yusuf interpret dreams for in prison?", ["The king’s cupbearer and baker", "A prisoner", "A merchant"], 0],
-        ["How did Prophet Yusuf avoid the temptation of Zulaikha?", ["He sought refuge in God", "He ignored her", "He rejected her advances"], 0]
+        ["What was the interpretation of the king’s dream?", ["Years of plenty followed by years of famine", "A new ruler will come", "Egypt will prosper"], 0]
     ],
     hard: [
         ["What was the king's dream in Prophet Yusuf's story?", ["Seven fat cows and seven thin cows", "A river overflowing", "A harvest of wheat"], 0],
-        ["What happened to the king's baker after Prophet Yusuf interpreted his dream?", ["He was hanged", "He was released", "He was sent to prison"], 0],
-        ["What did Zulaikha do when Prophet Yusuf rejected her advances?", ["She accused him of wrongdoing", "She begged for forgiveness", "She threatened him"], 0],
-        ["How did Prophet Yusuf respond when Zulaikha accused him?", ["He denied the accusation", "He confessed", "He remained silent"], 0],
-        ["How did Prophet Yusuf test his brothers?", ["He asked them to bring Benjamin", "He demanded they bring back their father", "He accused them of theft"], 0]
+        ["What happened to the king's baker after Prophet Yusuf interpreted his dream?", ["He was hanged", "He was released", "He was sent to prison"], 0]
     ]
 };
 
-// Quiz Variables
+// Variables
 let currentLevel = "";
 let currentQuestions = [];
 let currentQuestionIndex = 0;
@@ -31,7 +22,7 @@ let score = 0;
 let timer;
 let timeLeft = 30;
 
-// Display Level Selection
+// Show Level Selection Screen
 function showLevelSelection() {
     document.getElementById("welcome-screen").classList.add("hidden");
     document.getElementById("level-screen").classList.remove("hidden");
@@ -40,7 +31,7 @@ function showLevelSelection() {
 // Start Quiz
 function startQuiz(level) {
     currentLevel = level;
-    currentQuestions = [...questions[level]].sort(() => Math.random() - 0.5); // Shuffle questions
+    currentQuestions = [...questions[level]].sort(() => Math.random() - 0.5);
     currentQuestionIndex = 0;
     score = 0;
     showQuestion();
@@ -51,8 +42,13 @@ function startQuiz(level) {
 
 // Show Question
 function showQuestion() {
+    if (currentQuestionIndex >= currentQuestions.length) {
+        endQuiz();
+        return;
+    }
+
     const questionData = currentQuestions[currentQuestionIndex];
-    document.getElementById("question-number").textContent = `Question ${currentQuestionIndex + 1} of 5`;
+    document.getElementById("question-number").textContent = `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
     document.getElementById("question-text").textContent = questionData[0];
 
     const optionsContainer = document.getElementById("options-container");
@@ -80,7 +76,7 @@ function checkAnswer(selectedIndex) {
 
 // Next Question
 function nextQuestion() {
-    if (currentQuestionIndex < 4) {
+    if (currentQuestionIndex < currentQuestions.length - 1) {
         currentQuestionIndex++;
         showQuestion();
     } else {
@@ -114,7 +110,7 @@ function endQuiz() {
     clearInterval(timer);
     document.getElementById("quiz-screen").classList.add("hidden");
     document.getElementById("results-screen").classList.remove("hidden");
-    document.getElementById("final-score").textContent = `${score} / 5`;
+    document.getElementById("final-score").textContent = `${score} / ${currentQuestions.length}`;
 
     const answersContainer = document.getElementById("correct-answers");
     answersContainer.innerHTML = "";
@@ -135,4 +131,4 @@ function restartQuiz() {
 function goToMainMenu() {
     document.getElementById("results-screen").classList.add("hidden");
     document.getElementById("welcome-screen").classList.remove("hidden");
-}
+            }
