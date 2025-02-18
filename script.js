@@ -131,4 +131,4 @@ function restartQuiz() {
 function goToMainMenu() {
     document.getElementById("results-screen").classList.add("hidden");
     document.getElementById("welcome-screen").classList.remove("hidden");
-            }
+        }
