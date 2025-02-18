@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prophet Yusuf Quiz App</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prophet Yusuf Quiz</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="app">
-    <div id="welcome-screen" class="screen">
-      <h1>Welcome to the Prophet Yusuf Quiz!</h1>
-      <button onclick="startQuiz('easy')">Start Easy Quiz</button>
-      <button onclick="startQuiz('medium')">Start Medium Quiz</button>
-      <button onclick="startQuiz('hard')">Start Hard Quiz</button>
+    <div id="welcome-screen">
+        <h1>Welcome to Prophet Yusuf Quiz</h1>
+        <button id="start-btn">Start Quiz</button>
+        <div>
+            <button class="level-btn" id="easy-btn">Easy</button>
+            <button class="level-btn" id="medium-btn">Medium</button>
+            <button class="level-btn" id="hard-btn">Hard</button>
+        </div>
     </div>
 
-    <div id="quiz-screen" class="screen">
-      <h2>Question <span id="question-number">1</span></h2>
-      <p id="question-text"></p>
-      <ul id="answers-list"></ul>
-      <p>Time Left: <span id="timer">30</span> seconds</p>
-      <button id="next-btn" onclick="nextQuestion()">Next</button>
+    <div id="quiz-screen" style="display: none;">
+        <h2>Question: <span id="question-num"></span></h2>
+        <h3 id="question-text"></h3>
+        <div id="answers"></div>
+        <p id="timer"></p>
+        <button id="next-btn" style="display: none;">Next Question</button>
     </div>
 
-    <div id="results-screen" class="screen">
-      <h1>Your Score: <span id="final-score"></span></h1>
-      <button onclick="restartQuiz()">Restart Quiz</button>
-      <button onclick="goToMainMenu()">Main Menu</button>
+    <div id="results-screen" style="display: none;">
+        <h2>Quiz Finished!</h2>
+        <p>Your Score: <span id="score"></span></p>
+        <button id="restart-btn">Restart Quiz</button>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
