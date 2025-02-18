@@ -3,40 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prophet Yusuf Quiz</title>
   <link rel="stylesheet" href="styles.css">
-  <title>Islamic Quiz App</title>
 </head>
 <body>
-
-  <!-- Welcome Screen -->
   <div id="welcome-screen">
-    <h1>Welcome to the Islamic Quiz!</h1>
+    <h1>Welcome to the Prophet Yusuf Quiz</h1>
     <button id="start-quiz-btn">Start Quiz</button>
   </div>
 
-  <!-- Level Selection Screen -->
   <div id="level-screen" class="hidden">
-    <h2>Choose a Difficulty Level</h2>
+    <h2>Choose Difficulty Level</h2>
     <button id="easy-btn">Easy</button>
     <button id="medium-btn">Medium</button>
     <button id="hard-btn">Hard</button>
   </div>
 
-  <!-- Quiz Screen -->
   <div id="quiz-screen" class="hidden">
+    <div id="timer">Time Left: <span id="time-left"></span> seconds</div>
     <h2 id="question-text"></h2>
     <div id="options-container"></div>
     <button id="next-btn">Next</button>
   </div>
 
-  <!-- Results Screen -->
   <div id="results-screen" class="hidden">
-    <h2>Quiz Finished!</h2>
+    <h2>Results</h2>
     <p id="final-score"></p>
     <button id="restart-btn">Restart Quiz</button>
     <button id="return-to-main-btn">Return to Main Menu</button>
   </div>
 
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
